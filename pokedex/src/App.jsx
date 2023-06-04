@@ -1,20 +1,12 @@
 
-import Header from "./Components/Header/header"
+import { Router } from "./Components/Routes/Router"
 import { GlobalStyled } from "./GlobalStyle"
-import PokemonListPage from "./pages/PokemonListPage/PokemonListPage"
-
-
 
 function App() {
   return (
     <>
       <GlobalStyled/>
-        <div>
-          <Header/>
-          <PokemonListPage/>
-        
-        </div>      
-        
+      <Router/>
     </>
   )
 }

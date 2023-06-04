@@ -1,51 +1,50 @@
 import styled from "styled-components";
 
-export const Container = styled.header`
-    font-family: 'Poppins', sans-serif;
-    background-color:#ffffff;
-    display: flex;
-    align-items:center;
-    width: 100%;
-    justify-content: space-around;
-    height: 15vh;
-`
+export const Container=styled.section`
+background-color: #ffffff;
+display: flex;
+flex-direction: row;
+width: 100%;
+justify-content: space-around;
+align-items: center;
+height: 10rem;
 
+`
 
 
 export const BotaoPokedex = styled.button`
-/* padding: 4px 10px; */
-font-size: 3vw;
-font-weight:700;
-width: 18vw;
-min-height:7vh;
-max-height:15vh;
-background: #33A4F5;
-border-radius: 1vw;
+width: 14.125rem;
+height: 3.563rem;
 border: none;
-cursor: pointer;
+border-radius: 0.5rem;
+padding: 0.25rem,0.625rem,0.25rem,0.625rem;
+background: #33A4F5;
+font-family: "Poppins",sans-serif;
+font-size: 1rem;
+font-weight: 400;
+line-height: 1.5rem;
 color: #ffffff;
-max-width: 22vw;
-
+cursor: pointer;
 
 `
 export const Todos = styled.button`
-    background-color: transparent;
-    font-family: 'Poppins';
-    font-size: 2.8vw;
-    border : none;
-    min-height:7vh;   
-    max-height:15vw;
-    cursor: pointer;
-
-
+font-family: "Poppins",sans-serif;
+font-size: 1.4rem;
+font-weight: 700;
+width: 15rem;
+height: 2.25rem;
+background: transparent;
+border: none;
+text-decoration: underline;
+cursor: pointer;
 `
 
-export const MenorImage = styled.img`
-    margin-right: .4vw;
-    width: .5vw;
-
+export const Menor = styled.img`
+width: 1.563;
+height: 1.563;
+text-decoration:none;
 `
 export const Logo = styled.img`
-max-width: 22vw;
-max-height:15vh;
+width: 19.188rem;
+height: 7.063rem;
 `

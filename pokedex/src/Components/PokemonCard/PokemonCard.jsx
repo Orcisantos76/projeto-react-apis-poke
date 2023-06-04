@@ -21,7 +21,7 @@ export default function PokemonCard() {
                         </BoxTipo>
                         
                     </Box>
-                    <Detalhes><u>Detalhes</u></Detalhes>
+                    <Detalhes>Detalhes</Detalhes>
                     
                 </InfoBox>
                 <img src={pokebola} alt="" />

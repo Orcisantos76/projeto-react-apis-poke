@@ -14,10 +14,7 @@ position: absolute;
 top: -1.5vh;
 width: 14vw;
 right: 0.4vw;
-
 `
-
-
 export const CardBox = styled.div`
 width: 29.9vw;
 height: 23vh;
@@ -39,7 +36,6 @@ font-style: bold;
 display: flex;
 flex-direction: column;
 gap: 1vh;
-
 `
 export const BoxTipo = styled.div`
 display: flex;
@@ -53,7 +49,7 @@ font-size: 2vw;
 `
 export const Detalhes = styled.button`
 color: #ffffff;
-
+text-decoration:underline;
 background: transparent;
 border: none;
 font-size: 2vw;

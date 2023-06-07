@@ -1,4 +1,14 @@
 import styled from "styled-components";
+import tema from "../../tema";
+const getBackgroundColor = (types) => {
+    if (types.length > 0) {
+        if (types[0].type.name === "normal" && types[1]) {
+            return tema.colors.backgroundCard[types[1].type.name]
+        }
+    }
+    return tema.colors.backgroundCard[types[0].type.name] || "#ffffff";
+}
+console.log(tema);
 
 export const Container = styled.div`
 
@@ -18,7 +28,7 @@ right: 0.4vw;
 export const CardBox = styled.div`
 width: 29.9vw;
 height: 23vh;
-background-color: #729f92;
+background-color: ${({ types }) => getBackgroundColor(types)};
 border-radius: 0.6vw;
 display: flex;
 justify-content: space-between;
@@ -48,19 +58,21 @@ export const NamePokemon = styled.p`
 font-size: 2vw;
 `
 export const Detalhes = styled.button`
+
 color: #ffffff;
 text-decoration:underline;
 background: transparent;
-border: none;
+border: solid red 1px;
 font-size: 2vw;
-
+z-index:2;
+cursor: pointer;
 `
 
 export const ImageTipo = styled.img`
 width:7vw;
 height: 4vh;
 `
-export const CapturarButton= styled.button`
+export const CapturarButton = styled.button`
 position: absolute;
 right: 0;
 height: 4.2vh;

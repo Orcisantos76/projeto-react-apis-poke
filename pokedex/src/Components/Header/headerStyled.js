@@ -2,17 +2,14 @@ import styled from "styled-components";
 
 export const Container=styled.section`
 background-color: #ffffff;
-display: flex;
-flex-direction: row;
+display: grid;
+grid-template-columns: repeat(16, 1fr);
 width: 100%;
-justify-content: space-around;
 align-items: center;
 height: 10rem;
-
 `
-
-
 export const BotaoPokedex = styled.button`
+grid-column: 13/16;
 width: 14.125rem;
 height: 3.563rem;
 border: none;
@@ -25,9 +22,9 @@ font-weight: 400;
 line-height: 1.5rem;
 color: #ffffff;
 cursor: pointer;
-
 `
 export const Todos = styled.button`
+grid-column: 2/5;
 font-family: "Poppins",sans-serif;
 font-size: 1.4rem;
 font-weight: 700;
@@ -38,13 +35,29 @@ border: none;
 text-decoration: underline;
 cursor: pointer;
 `
-
 export const Menor = styled.img`
 width: 1.563;
 height: 1.563;
 text-decoration:none;
 `
 export const Logo = styled.img`
+grid-column: 7/11;
 width: 19.188rem;
 height: 7.063rem;
 `
+export const ButtonRemovePokemon = styled.button`
+grid-column: 13/16;
+border: none;
+font-family: "Poppins", sans-serif;
+font-style: normal;
+font-weight: 700;
+font-size: 1.4rem;
+color: #ffffff;
+cursor: pointer;
+align-self: center;
+background: #ff6262;
+border-radius: 0.5rem;
+z-index: 2;
+width: 14.125rem;
+height: 3.563rem;
+`;

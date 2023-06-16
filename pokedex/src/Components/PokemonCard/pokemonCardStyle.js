@@ -18,6 +18,7 @@ display: flex;
 align-items: end;
 margin-left: 1vw;
 position: relative;
+
 `
 export const PokemonImage = styled.img`
 position: absolute;
@@ -36,8 +37,10 @@ justify-content: space-between;
 export const InfoBox = styled.div`
 display: flex;
 flex-direction: column;
-justify-content: space-around;
+justify-content: space-between;
 overflow: hidden;
+width:50%;
+padding: 3%;
 `
 export const Box = styled.div`
 color: #ffffff;
@@ -45,29 +48,30 @@ font-size: 3rem;
 font-style: bold;
 display: flex;
 flex-direction: column;
-gap: 1vh;
+gap: .5vh;
+
 `
 export const BoxTipo = styled.div`
 display: flex;
 flex-direction: row;
+position: absolute;
+top: 60%;
 `
-export const IdPokemon = styled.p` 
+export const IdPokemon = styled.p`
 font-size: 2vw;
 `
 export const NamePokemon = styled.p`
 font-size: 2vw;
 `
 export const Detalhes = styled.button`
-
 color: #ffffff;
 text-decoration:underline;
 background: transparent;
-border: solid red 1px;
+border: none;
 font-size: 2vw;
-z-index:2;
+
 cursor: pointer;
 `
-
 export const ImageTipo = styled.img`
 width:7vw;
 height: 4vh;
@@ -83,4 +87,5 @@ border-radius:.4vw;
 border:none;
 font-size: 1vw;
 
+cursor: pointer;
 `

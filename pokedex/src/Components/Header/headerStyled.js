@@ -34,6 +34,7 @@ background: transparent;
 border: none;
 text-decoration: underline;
 cursor: pointer;
+/* z-index: 2; */
 `
 export const Menor = styled.img`
 width: 1.563;

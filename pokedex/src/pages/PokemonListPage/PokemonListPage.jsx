@@ -9,21 +9,22 @@ function PokemonListPage() {
   useEffect(() => {
     api.get("/pokemon").then((res) => {
       const results = res.data.results;
-      console.log(results);
+      // console.log(results);
       const promise = results.map((result) => api.get(result.url));
       Promise.all(promise).then((responses) => {
         const pokemonData = responses.map((res) => res.data);
-        console.log(pokemonData);
+        // console.log(pokemonData);
         setPokemons(pokemonData);
       });
     });
   }, []);
-
+  
   return (
     <>
       <TituloDaPagina>Todos Pokémons</TituloDaPagina>
       <CardContainer>
         {pokemons.map((pokemon) => (
+          
           <PokemonCard
             key={pokemon.id}
             name={pokemon.name}

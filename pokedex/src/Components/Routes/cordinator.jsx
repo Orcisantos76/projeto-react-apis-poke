@@ -4,6 +4,6 @@ export function goToHome(navigate){
 export function goToPokedex(navigate){
     navigate("/pokedex")
 }
-export function goToDetail(navigate){
-    navigate("/detail")
+export function goToDetail(navigate, id){
+    navigate("/detail/"+id)
 }

@@ -11,12 +11,17 @@ import logo from "../../assets/LogoPokemon.svg";
 import SimboloMenor from "../../assets/Menor.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { goToHome, goToPokedex } from "../Routes/cordinator";
+import { useContext } from "react";
+import { GlobalContext } from "../../Context/globalContext";
 
 
-function Header() {
+function Header(id) {
   
   const navigate = useNavigate()
   const location = useLocation()
+  const { removePokemon, pokemonOnHeader } = useContext(GlobalContext)
+  console.log(pokemonOnHeader)
+
 
   return (
     <>
@@ -33,8 +38,8 @@ function Header() {
 
         {location.pathname.includes("/detail") && (
         <ButtonRemovePokemon
-          onClick={() => (
-            alert("Pokemon Removido da pokedex"), goToPokedex(navigate)
+          onClick={() => (            
+            removePokemon(pokemonOnHeader.id), alert("Pokemon Removido da pokedex"), goToPokedex(navigate)
           )}
         >
           Excluir da Pokédex

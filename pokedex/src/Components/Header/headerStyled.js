@@ -11,6 +11,7 @@ height: 10rem;
 export const BotaoPokedex = styled.button`
 grid-column: 13/16;
 width: 14.125rem;
+max-width:16rem;
 height: 3.563rem;
 border: none;
 border-radius: 0.5rem;

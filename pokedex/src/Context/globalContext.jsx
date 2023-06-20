@@ -10,6 +10,7 @@ const GlobalContextProvider = ({children})=>{
     const removePokemon =(id)=>{
         setPokedexList(pokedexList.filter((pokemonToRemove)=>pokemonToRemove.id !== id))
       }
+    
 
     return(<GlobalContext.Provider 
         value={{pokedexList, setPokedexList, removePokemon, setPokemonOnHeader, pokemonOnHeader}}

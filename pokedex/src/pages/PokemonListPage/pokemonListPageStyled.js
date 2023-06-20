@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TituloDaPagina = styled.h1`
   /* margin-top: 60px;
 margin-left: 40px; */
-  font-size: 1.6rem;
+  font-size: 5rem;
   margin-top: 7vh;
   margin-left: 5vw;
   font-family: "Poppins", sans-serif;

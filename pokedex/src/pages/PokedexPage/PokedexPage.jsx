@@ -1,15 +1,30 @@
 import { useContext } from "react";
 import PokemonCard from "../../Components/PokemonCard/PokemonCard";
 import { GlobalContext } from "../../Context/globalContext";
+import { Grid, Text } from "@chakra-ui/react";
 
 function PokedexPage() {
   const { pokedexList } = useContext(GlobalContext);
   console.log(pokedexList);
   return (
     <>
-      <section>
-        <h1>Meus Pokémons </h1>
-      </section>
+      <Text
+        color="white"
+        fontSize={{ lg: "2.5rem", base: "1.5rem" }}
+        mt="3.75rem"
+        ml="2.5rem"
+        fontFamily="Poppins"
+      >
+        Meus Pokémons
+      </Text>
+      <Grid
+        templateColumns={{
+          "2xl": "repeat(3, 1fr)",
+          lg: "repeat(2, 1fr)",
+          base: "1fr",
+        }}
+        justifyItems="center"
+      >
       {pokedexList.map((pokemon) => (
         <PokemonCard
           key={pokemon.id}
@@ -19,6 +34,7 @@ function PokedexPage() {
           types={pokemon.types}
         ></PokemonCard>
       ))}
+      </Grid>
     </>
   );
 }

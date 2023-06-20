@@ -1,23 +1,27 @@
 import { useParams } from "react-router-dom";
 import pokeballDetailInsideBackground from "../../assets/pokeballDetailInsideBackground.svg";
-import { Flex, Progress } from "@chakra-ui/react";
+import { Center, Flex, Progress } from "@chakra-ui/react";
+import { Box, Text } from '@chakra-ui/react'
 import {
   Base,
   Container,
   Detalhes,
+  Gif,
   Info,
   InfoMov,
-  LogoPokeBack,
-  LogoPokeFront,
+  LogoPoke, 
   Logos,
   Move,
   Pokebola,
   Pokemon,
   Section,
+  Title,
+  TypesBox,
 } from "./pokemonDetailPageStyled";
 import { useEffect } from "react";
 import { api } from "../../api";
 import { useState } from "react";
+import pokemonTypes from "../../pokemonTypes";
 
 function PokemonDetailPage() {
   const params = useParams();
@@ -38,51 +42,101 @@ function PokemonDetailPage() {
   }, []);
   console.log(pokemon);
   let moveCount = 0;
+
+  let total = 0;
+  if(!loading){
+    for(const stat of pokemon.stats){total += stat.base_stat}
+  }
+
+
   if (loading) {
     return <p>Carregando...</p>;
   }
   return (
     <>
+      
       <Detalhes>Detalhes </Detalhes>
-      <Container>
+      <Container types={pokemon.types}>
         <Pokemon
           src={pokemon.sprites.other["official-artwork"].front_default}
-          alt=""
+          alt="" 
+          
         />
         <Pokebola src={pokeballDetailInsideBackground} alt="" />
         <Section>
           <Logos>
-            <LogoPokeFront>
-              <img src={pokemon.sprites.front_default} />{" "}
-            </LogoPokeFront>
-            <LogoPokeBack>
-              <img src={pokemon.sprites.back_default} />{" "}
-            </LogoPokeBack>
+            <LogoPoke>
+              <Gif src={pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default} />{" "}
+            </LogoPoke>
+            <LogoPoke>
+              <Gif src={pokemon.sprites.versions["generation-v"]["black-white"].animated.back_default} />{" "}
+            </LogoPoke>
           </Logos>
-          <Flex flexDir="column" h="100%" w='23vw' bgColor="white" >
+          <Flex flexDir="column" h="100%" w='23vw' bgColor="white" p=".8rem" borderRadius=".6rem">
+            <Title>Estatistica Basica</Title>
             {pokemon.stats.map((status) => {
               return (
                 <>
-                  <span>{status.stat.name}</span>
-                  <Progress
-                    colorScheme={'red'}
+                  <span> {status.stat.name.charAt(0).toUpperCase() + status.stat.name.slice(1)} {status.base_stat}</span>                  <Progress
+                    colorScheme={`red`}
                     value={status.base_stat}
+                    
                   />
                 </>
               );
             })}
+            <p>Total {total}</p>
           </Flex>
 
           <InfoMov>
             <Info>
               <p># {pokemon.id}</p>
-              <p>{pokemon.name}</p>
+              <h1>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
+              <TypesBox>
+                  {pokemon.types.map((type) => {
+                    return (
+                      <img
+                        src={pokemonTypes[type.type.name]}
+                        key={type.type.name}
+                      />
+                    );
+                  })}
+                </TypesBox>
             </Info>
+            
             <Move>
+            <Title>Movimentos: </Title>             
               {pokemon.moves.map((move) => {
                 if (moveCount < 8) {
                   moveCount += 1;
-                  return <p>{move.move.name}</p>;
+                  return <Box
+                  key={move.move.name}
+                  position="relative"
+                  marginBottom="3px"
+                  padding=  ".5rem"                  
+                  _after={{
+                    content: '""',
+                    position: "absolute",
+                    bottom: "-2px",
+                    left: "0",
+                    width: "100%",
+                    height: ".4rem",
+                    backgroundColor: "white",
+                    
+                  }}
+                >
+                  <Text
+                    fontSize=".9rem"
+                    fontFamily="Montserrat"
+                    fontWeight="400"
+                    color="black"
+                    bg="#ececec"
+                    padding="2px"
+                    borderRadius=".4rem"                  
+                  >
+                    {move.move.name.charAt(0).toUpperCase() + move.move.name.slice(1)}
+                  </Text>
+                </Box>
                 }
               })}
             </Move>

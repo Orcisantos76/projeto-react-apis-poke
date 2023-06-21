@@ -28,6 +28,7 @@ export default {
       fairy: '#ee99ac',
       psychic: '#f85888'
     },
+    bgGradient :'linear(to-l, #7928CA, #FF0080)' ,
 
   },
 }

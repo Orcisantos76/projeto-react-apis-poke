@@ -9,7 +9,7 @@ import {
 } from "./headerStyled";
 import logo from "../../assets/LogoPokemon.svg";
 import SimboloMenor from "../../assets/Menor.svg";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { goToHome, goToPokedex } from "../Routes/cordinator";
 import { useContext } from "react";
 import { GlobalContext } from "../../Context/globalContext";
@@ -19,9 +19,12 @@ function Header(id) {
   
   const navigate = useNavigate()
   const location = useLocation()
-  const { removePokemon, pokemonOnHeader } = useContext(GlobalContext)
-  console.log(pokemonOnHeader)
-
+  const { pokemonOnHeader, setPokedexList,pokedexList, removePokemon } = useContext(GlobalContext)
+  
+  // console.log(pokemonOnHeader,"linha 23")
+  const params=useParams()
+  // console.log(location.pathname.split('/')[2])
+  
 
   return (
     <>
@@ -29,7 +32,7 @@ function Header(id) {
         {location.pathname !== "/" && (
         <Todos onClick={()=>{goToHome(navigate)}}><Menor src={SimboloMenor} alt="" /> Todos Pokémons</Todos>)}
 
-        <Logo src={logo} alt="" />
+        <Logo src={logo} alt="" /> 
         {location.pathname === "/" && (
         <BotaoPokedex onClick={()=>{goToPokedex(navigate)}}>
           Pokedex
@@ -39,7 +42,7 @@ function Header(id) {
         {location.pathname.includes("/detail") && (
         <ButtonRemovePokemon
           onClick={() => (            
-            removePokemon(pokemonOnHeader.id), alert("Pokemon Removido da pokedex"), goToPokedex(navigate)
+            removePokemon(location.pathname.split('/')[2]),goToPokedex(navigate)
           )}
         >
           Excluir da Pokédex

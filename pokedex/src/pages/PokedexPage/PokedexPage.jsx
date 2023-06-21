@@ -5,7 +5,7 @@ import { Grid, Text } from "@chakra-ui/react";
 
 function PokedexPage() {
   const { pokedexList } = useContext(GlobalContext);
-  console.log(pokedexList);
+  // console.log(pokedexList);
   return (
     <>
       <Text

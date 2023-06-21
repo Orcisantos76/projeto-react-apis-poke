@@ -31,7 +31,7 @@ const getBackgroundColor = (types) => {
   }
   return tema.colors.backgroundCard[types[0].type.name] || "#ffffff";
 };
-console.log(tema);
+
 
 export default function PokemonCard({ name, image, id, types }) {
   const navigate = useNavigate();

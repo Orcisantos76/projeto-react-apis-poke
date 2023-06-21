@@ -8,7 +8,7 @@ export const getBackgroundColor = (types) => {
     }
     return tema.colors.backgroundCard[types[0].type.name] || "#ffffff";
 }
-console.log(tema);
+
 
 export const Container = styled.div`
 width: 30vw;

@@ -28,6 +28,7 @@ function PokemonDetailPage() {
   const [pokemon, setPokemon] = useState();
   const [loading, setLoading] = useState(true);
 
+
   console.log(params);
   useEffect(() => {
     api
@@ -40,7 +41,7 @@ function PokemonDetailPage() {
         console.log(error);
       });
   }, []);
-  console.log(pokemon);
+  // console.log(pokemon);
   let moveCount = 0;
 
   let total = 0;
@@ -78,7 +79,8 @@ function PokemonDetailPage() {
               return (
                 <>
                   <span> {status.stat.name.charAt(0).toUpperCase() + status.stat.name.slice(1)} {status.base_stat}</span>                  <Progress
-                    colorScheme={`red`}
+                    bgGradient={'linear(to-r, green.100, red.500)'}
+                    // <Box w='100%' h='200px' bgGradient='linear(to-r, green.200, pink.500)' />
                     value={status.base_stat}
                     
                   />

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
 
@@ -17,6 +18,19 @@ const GlobalContextProvider = ({children})=>{
       console.log(pokedex01)      
       setPokedexList(pokedex01)      
       }
+
+      useEffect(() => {
+        const pokemonsOnLocalStorage = JSON.parse(localStorage.getItem("pokemons"));
+        pokemonsOnLocalStorage
+          ? setPokedexList(pokemonsOnLocalStorage)
+          : setPokedexList([]);
+      }, []);
+    
+      useEffect(() => {
+        setTimeout(() => {
+          localStorage.setItem("pokemons", JSON.stringify(pokedexList));
+        }, 200);
+      }, [pokedexList]);
 
     console.log(pokedexList)
 

@@ -12,6 +12,7 @@ margin-left: 40px; */
   color: #ffffff;
 `;
 export const CardContainer = styled.div`
+  margin-left:5vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import pokebola from "../../assets/pokebola.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { goToDetail } from "../Routes/cordinator";
@@ -23,19 +22,18 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import tema from "../../tema";
+
 const getBackgroundColor = (types) => {
   if (types.length > 0) {
     if (types[0].type.name === "normal" && types[1]) {
       return tema.colors.backgroundCard[types[1].type.name];
     }
   }
-  return tema.colors.backgroundCard[types[0].type.name] || "#ffffff";
+  return tema.colors.backgroundCard[types[1].type.name] || "#ffffff";
 };
-
 
 export default function PokemonCard({ name, image, id, types }) {
   const navigate = useNavigate();
-  const [pokedex, setPokedex] = useState([]);
   const [inPokedex, setInPokedex] = useState(false);
   const { pokedexList, setPokedexList, removePokemon, setPokemonOnHeader } =
     useContext(GlobalContext);
@@ -64,7 +62,6 @@ export default function PokemonCard({ name, image, id, types }) {
       backdropFilter="blur(10px) hue-rotate(90deg)"
     />
   );
-
   const OverlayTwo = () => (
     <ModalOverlay
       bg="none"
@@ -73,10 +70,8 @@ export default function PokemonCard({ name, image, id, types }) {
       backdropBlur="3px"
     />
   );
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = useState(<OverlayOne />);
-
   const onCloseModal = () => {
     onClose();
     if (location.pathname === "/pokedex") {
@@ -107,6 +102,7 @@ export default function PokemonCard({ name, image, id, types }) {
           position={"relative"}
           h={"13.125rem"}
           w={"27.5rem"}
+          
           backgroundColor={tema.colors.backgroundCard[types[0].type.name]}
           borderRadius={"0.75rem"}
         >
@@ -127,6 +123,7 @@ export default function PokemonCard({ name, image, id, types }) {
             position={"absolute"}
             top={"2.5rem"}
             left={"1.438rem"}
+            textTransform={"capitalize"}
           >
             {name}
             </Text>
@@ -151,6 +148,7 @@ export default function PokemonCard({ name, image, id, types }) {
             _active={"none"}
             zIndex={2}
             onClick={() => {
+              setPokemonOnHeader(pokemon)
             goToDetail(navigate, id);
             }}
           >

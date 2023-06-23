@@ -31,6 +31,8 @@ function PokedexPage() {
           name={pokemon.name}
           id={pokemon.id}
           image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+          
+
           types={pokemon.types}
         ></PokemonCard>
       ))}

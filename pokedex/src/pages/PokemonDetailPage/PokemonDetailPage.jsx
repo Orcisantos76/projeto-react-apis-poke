@@ -1,7 +1,11 @@
 import { useParams } from "react-router-dom";
+import { GlobalContext } from "../../Context/globalContext";
 import pokeballDetailInsideBackground from "../../assets/pokeballDetailInsideBackground.svg";
 import { Center, Flex, Progress } from "@chakra-ui/react";
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react';
+import  rocketchu  from '../../assets/rocketchu.gif'
+import { useContext } from "react";
+
 import {
   Base,
   Container,
@@ -27,6 +31,8 @@ function PokemonDetailPage() {
   const params = useParams();
   const [pokemon, setPokemon] = useState();
   const [loading, setLoading] = useState(true);
+  const context = useContext(GlobalContext)
+  const {removePokemon} = context;
 
 
   console.log(params);
@@ -34,8 +40,11 @@ function PokemonDetailPage() {
     api
       .get(`/pokemon/${params.id}`)
       .then((res) => {
-        setPokemon(res.data);
-        setLoading(false);
+        setTimeout(()=> {
+          setPokemon(res.data)
+          setLoading(false)
+        }, 2000)
+        
       })
       .catch((error) => {
         console.log(error);
@@ -43,16 +52,21 @@ function PokemonDetailPage() {
   }, []);
   // console.log(pokemon);
   let moveCount = 0;
-
   let total = 0;
-  if(!loading){
-    for(const stat of pokemon.stats){total += stat.base_stat}
-  }
-
-
   if (loading) {
-    return <p>Carregando...</p>;
+    return (
+      <>
+        <img src={rocketchu} alt="pokebola" />
+      </>
+    );
   }
+  //se ele nao estiver mais carregando, pega
+  if(!loading){
+    for(const stat of pokemon.stats){
+      total += stat.base_stat
+    }
+  }
+  
   return (
     <>
       
@@ -61,7 +75,6 @@ function PokemonDetailPage() {
         <Pokemon
           src={pokemon.sprites.other["official-artwork"].front_default}
           alt="" 
-          
         />
         <Pokebola src={pokeballDetailInsideBackground} alt="" />
         <Section>
@@ -87,7 +100,7 @@ function PokemonDetailPage() {
                 </>
               );
             })}
-            <p>Total {total}</p>
+            <p>Total: {total}</p>
           </Flex>
 
           <InfoMov>

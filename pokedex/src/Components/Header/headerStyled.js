@@ -1,13 +1,6 @@
 import styled from "styled-components";
 
-export const Container=styled.section`
-background-color: #ffffff;
-display: grid;
-grid-template-columns: repeat(16, 1fr);
-width: 100%;
-align-items: center;
-height: 10rem;
-`
+
 export const BotaoPokedex = styled.button`
 grid-column: 13/16;
 width: 14.125rem;
@@ -63,3 +56,20 @@ z-index: 2;
 width: 14.125rem;
 height: 3.563rem;
 `;
+export const ButtonAddPokemon = styled.button`
+grid-column: 13/16;
+border: none;
+font-family: "Poppins", sans-serif;
+font-style: normal;
+font-weight: 700;
+font-size: 1.4rem;
+color: #ffffff;
+cursor: pointer;
+align-self: center;
+background: #33a4f5;
+border-radius: 0.5rem;
+z-index: 2;
+width: 14.125rem;
+height: 3.563rem;
+
+`

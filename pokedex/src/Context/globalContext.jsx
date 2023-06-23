@@ -6,19 +6,22 @@ export const GlobalContext = createContext()
 const GlobalContextProvider = ({children})=>{
     const [pokedexList, setPokedexList]=useState([])
     const [pokemonOnHeader, setPokemonOnHeader] = useState({})
+    // const [pokemons, setPokemons]= useState([])
+    const catchPokemon = (pokemon) =>{
+      setPokedexList([...pokedexList, pokemon]);
+      // const newPokemons = pokemons.filter((poke)=>pokemon.id !== poke.id);
+    };
 
     const removePokemon =(id)=>{
-      // console.log("ola",id)
-      const pokedex01=pokedexList.filter((pokemonToRemove)=>pokemonToRemove.id != id)
-      console.log(pokedex01)
-      
-      setPokedexList(pokedex01)
-      
+      const pokedex01=pokedexList.filter((pokemonToRemove)=>pokemonToRemove.id !== id)
+      console.log(pokedex01)      
+      setPokedexList(pokedex01)      
       }
+
     console.log(pokedexList)
 
     return(<GlobalContext.Provider 
-        value={{pokedexList, setPokedexList, removePokemon, setPokemonOnHeader, pokemonOnHeader}}
+        value={{pokedexList,catchPokemon, setPokedexList, removePokemon, setPokemonOnHeader, pokemonOnHeader}}
         >{children}</GlobalContext.Provider>)
 
 }

@@ -1,36 +1,49 @@
 /* eslint-disable no-unused-vars */
 import {
-  Container,
+  
   Todos,
   BotaoPokedex,
   Logo,
   Menor,
   ButtonRemovePokemon,
+  ButtonAddPokemon,
 } from "./headerStyled";
 import logo from "../../assets/LogoPokemon.svg";
 import SimboloMenor from "../../assets/Menor.svg";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { goToHome, goToPokedex } from "../Routes/cordinator";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../Context/globalContext";
+import { Box, Grid } from "@chakra-ui/react";
 
 
-function Header(id) {
-  
+
+function Header() {  
   const navigate = useNavigate()
   const location = useLocation()
-  const { pokemonOnHeader, setPokedexList,pokedexList, removePokemon } = useContext(GlobalContext)
-  
+  const { pokemonOnHeader, pokedexList, removePokemon ,catchPokemon} = useContext(GlobalContext)
+  console.log(pokemonOnHeader, "direto do header")
   // console.log(pokemonOnHeader,"linha 23")
-  const params=useParams()
-  // console.log(location.pathname.split('/')[2])
+  // const params=useParams()
+  const [pokemonExiste, setPokemonExiste] = useState(false)
+  useEffect(()=>{
+    //retorna true ou false
+    setPokemonExiste(pokedexList.find((pokemon)=>(pokemon.id === pokemonOnHeader.id)))
+  })
   
 
   return (
     <>
-      <Container>
+      <Box
+        bg="#ffffff"
+        display="grid"
+        gridTemplateColumns="repeat(16,1fr)"
+        width="100%"
+        alignItems="center"
+        height="10rem"
+      >
         {location.pathname !== "/" && (
-        <Todos onClick={()=>{goToHome(navigate)}}><Menor src={SimboloMenor} alt="" /> Todos Pokémons</Todos>)}
+        <Todos onClick={()=>{goToHome(navigate)}}> &lt;  Todos Pokémons</Todos>)}
 
         <Logo src={logo} alt="" /> 
         {location.pathname === "/" && (
@@ -39,17 +52,22 @@ function Header(id) {
         </BotaoPokedex>
         )}
 
-        {location.pathname.includes("/detail") && (
-        <ButtonRemovePokemon
-          onClick={() => (            
-            removePokemon(location.pathname.split('/')[2]),goToPokedex(navigate)
-          )}
-        >
-          Excluir da Pokédex
-        </ButtonRemovePokemon>
-      )}
+{location.pathname.includes("detail") &&
+          (pokemonExiste ? (
+            <ButtonRemovePokemon
+              onClick={() => (removePokemon(pokemonOnHeader.id), goToPokedex(navigate))}
+            >
+              Excluir da Pokedex
+            </ButtonRemovePokemon>
+          ) : (
+            <ButtonAddPokemon onClick={() => (catchPokemon(pokemonOnHeader),goToPokedex(navigate))}>
+              Adicionar Pokedex
+            </ButtonAddPokemon>
+          ))}
 
-      </Container>
+      </Box>
+      {/* <Container>
+      </Container> */}
     </>
   );
 }
